@@ -11,12 +11,14 @@ const backgroundImages = [
 const randomImg = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
 export const backgroundImageStyle = {
     background: `url(${randomImg})`,
-    backgroundRepeat: 'no-repeat',
+    backgroundRepeat: 'repeat',
     backgroundSize: 'cover',
+    backgroundColor: '#1c1c1c',
+    
   }
 
 //================= MUI Styles===========================
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme=>({
   button:{
         border: '2px solid #fafafa',
         color: '#fafafa',
@@ -41,8 +43,8 @@ export const useStyles = makeStyles({
     borderRadius: 2,
     padding: 5,
     '&:hover':{
-      transform: 'scale(1.1,1.1)',
-      color: '#1C1C1C'
+      color: '#1C1C1C',
+      backgroundColor:'rgba(255, 255, 255, 0.24)'
     }
   },
   modalCont: {
@@ -62,34 +64,53 @@ export const useStyles = makeStyles({
   jornalia: {
     flexDirection:'column',
     justifyContent: 'start',
-    alignItems: 'center',
+    alignItems: 'center', 
     height: '100%',
-    width:'320px',
+    padding: 10,
     border: '2px solid #fafafa',
     backgroundColor: 'rgba(255, 255, 255, 0.24)', 
+  },
+  filts:{
+    flexDirection: 'column',
+    display:'flex',
+    width: '100%',
   },
   panel:{
     backdropFilter: 'blur(9px)',
     height:'100vh',
+  },
+  disabled: {
+    color: 'grey'
+  },
+  enabled: {
+    color: '#fafafa',
+    '&:hover': {
+      backgroundColor: '#fafafa',
+      color: '#1C1C1C',
+      transition: '0.7s',
+  },
+  },
+  visor: {
+    border: '2px solid #fafafa ', 
+    height: '100vh', 
+    width: '100%',
+    overflow: 'auto',
+    backgroundColor: 'transparent',
+    backdropFilter: 'blur(9px)',
   }
-},[])
+
+}),[])
 
 
 export const CssTextField = withStyles({
   root: {
       '& label.Mui-focused': {
           color: '#fafafa',
-          paddingLeft: 45
       },
       '& .MuiInputLabel-root':{
-        paddingLeft: 45,
         color: '#fafafa'
       },
-      width: '80%',
-      paddingLeft:45,
-      paddingTop:15,
-      
-
+    paddingTop: 15,
   },
 })(TextField)
 

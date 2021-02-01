@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+//==========Material UI imports============
 import { CssBaseline, Grid } from '@material-ui/core';
+//===============Components================
 import { backgroundImageStyle, useStyles } from '../assets';
 import Search from '../components/search';
 import Visor from '../components/visor';
 import {apiKey as key} from '../api-key'
-import axios from 'axios';
 
-
-//hacer un useEffect que haga el axios y le pase por props los arrays con los datos
 
 const Panel = ()=>{
-
-const [data, setData] = useState('')
-
-
+  const classes = useStyles()
+//===========React Hooks============
+const [provs, setProviders] = useState([])
+const [filters, setFilters] = useState({
+  kword: 'coronavirus',
+  medios: ['Clarin'],
+  startDate: '',
+  endDate: ''
+})
+const [data , setData] = useState([])
   useEffect(()=>{
-    axios.get(`https://api.jornalia.net/api/v1/articles?apiKey=${key}`)
+    axios.get(`https://api.jornalia.net/api/v1/providers?apiKey=${key}`)
     .then(r=>{
-      console.log(r.data)
-      setData(r.data)
-      
+      setProviders(r.data.providers)
       return r.data
     });
-    // console.log(data) 
   },[])
-  const classes = useStyles()
   return(
     <div style={backgroundImageStyle}>
       <CssBaseline/>
-      <Grid container xs={12} className={classes.panel}>
-          <Search/>
-          <Visor/>
+      <Grid container  className={classes.panel}>
+        <Grid item xs={12} sm={3} md={3} lg={2}>
+          <Search providers={provs} filters={filters} setFilters={setFilters} setData={setData} data={data}/>
+        </Grid>
+        <Grid item xs={12} sm={9} md={9} lg={10}>
+          <Visor data={data}/>
+        </Grid>
       </Grid>
     </div>
   )

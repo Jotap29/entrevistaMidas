@@ -6,5 +6,5 @@ Aplicación web que permite al usuario buscar información por distintas fuentes
 - Material UI
 - Axios
 ## ¿Cómo correr el proyecto?
--Corre el comando npm install en la 'src' y luego podrás iniciar con el comando npm start
+-Corre el comando npm install en la carpeta 'src' y luego podrás iniciar con el comando npm start
 ##Este proyecto utiliza la api de Jornalia

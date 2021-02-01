@@ -1,1 +1,10 @@
-# entrevistaMidas
+# Entrevista Midas
+Aplicación web que permite al usuario buscar información por distintas fuentes, filtrando las búsquedas. 
+
+## Tecnologías utilizadas
+- React Hooks
+- Material UI
+- Axios
+##¿Cómo correr el proyecto?
+-Corre el comando npm install en la 'src' y luego podrás iniciar con el comando npm start
+##Este proyecto utiliza la api de Jornalia

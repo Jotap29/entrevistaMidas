@@ -2,7 +2,7 @@
 Aplicación web que permite al usuario buscar información por distintas fuentes, filtrando las búsquedas. 
 
 ## Tecnologías utilizadas
-- React Hooks
+- React (react hooks, react router)
 - Material UI
 - Axios
 ## ¿Cómo correr el proyecto?

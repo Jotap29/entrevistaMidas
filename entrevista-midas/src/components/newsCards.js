@@ -5,6 +5,8 @@ import {Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typog
 
 const useStyles = makeStyles({
   root: {
+    background: 'rgba(66, 66, 66, 0.36)',
+    color: '#fafafa',
     height:'100%',
     display:'flex',
     flexDirection: 'column',
@@ -35,13 +37,13 @@ export default function NewsCards({article}) {
           <Typography gutterBottom variant="h5" component="h2">
             {article.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2"  component="p">
             {article.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.bot}>
-        <Button size="small" color='primary' className={classes.button} onClick={()=>windowOpen(article.sourceUrl,article.provider._id, "_blank")}>
+        <Button size="small" color='inherit' className={classes.button} onClick={()=>windowOpen(article.sourceUrl,article.provider._id, "_blank")}>
          Ir a la Noticia Completa
         </Button>
       </CardActions>

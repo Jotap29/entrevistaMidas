@@ -12,8 +12,8 @@ const classes = useStyles()
   return (
     <div style={backgroundImageStyle}>
     <Grid container className={classes.visor} >
-      {data && data.map(art=> (
-        <Grid item xs={12} sm={6} md={4} lg={3}   >
+      {data && data.map((art,i)=> (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={i}  >
           <NewsCardDemo article={art}/>
         </Grid>
         ))}

@@ -1,18 +1,24 @@
 import React from "react";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 //==========Material UI imports============
 import {Button, Grid,} from '@material-ui/core'
 //===============Components================
 import { CssTextField, useStyles } from "../assets";
 import SelectCustom from "../components/select"
 import { apiKey as key } from '../api-key'
-
+import { endSession } from './sessionStorage'
  const Search=({filters, setFilters, providers, setData})=>{
    const classes = useStyles();
-
+   const history = useHistory()
 
    return(
          <Grid className={classes.jornalia} container>
+            <Button className={classes.button} 
+            onClick={()=>{
+               endSession() 
+               history.push('/')
+               }}>Cerrar sesión</Button>
             <Grid item  className={classes.filts}>
                <CssTextField value={filters.kword} onChange={e=>{setFilters({...filters, kword: e.target.value})}} variant='filled' label='Palabras clave' /> 
                <SelectCustom providers={providers} filters={filters} setFilters={setFilters} selectName={filters.medios} label='Medios'/>

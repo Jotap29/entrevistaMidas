@@ -7,11 +7,13 @@ import { backgroundImageStyle, useStyles } from '../assets';
 import Search from '../components/search';
 import Visor from '../components/visor';
 import {apiKey as key} from '../api-key'
-
+import { getSession } from '../components/sessionStorage'
+import { useHistory } from 'react-router-dom';
 
 const Panel = ()=>{
   const classes = useStyles()
 //===========React Hooks============
+const history = useHistory()
 const [provs, setProviders] = useState([])
 const [filters, setFilters] = useState({
   kword: 'coronavirus',
@@ -21,6 +23,7 @@ const [filters, setFilters] = useState({
 })
 const [data , setData] = useState([])
   useEffect(()=>{
+    !getSession() ?  history.push('/') : 
     axios.get(`https://api.jornalia.net/api/v1/providers?apiKey=${key}`)
     .then(r=>{
       setProviders(r.data.providers)

@@ -4,14 +4,20 @@ import {Button, CssBaseline, Fade, Grid, Modal, Typography, Backdrop} from '@mat
 //=============Components==================
 import { backgroundImageStyle, useStyles } from '../assets'
 import LogIn from '../components/logIn';
+import { getSession } from '../components/sessionStorage'
+import { useHistory } from 'react-router-dom';
 
 
 const Home=()=>{
   const classes = useStyles()
 
   //==========React Hooks==========
+  const history = useHistory()
   const [open, setOpen] = useState(false)
-
+  const [user, setUser] = useState({
+    name: '',
+    password: '',
+  })
  //*================ Modal Details Handlers ==========================
  const handleOpen = () => {
   setOpen(true);
@@ -22,12 +28,12 @@ const handleClose = () => {
   return(
     <div style={backgroundImageStyle}>
       <CssBaseline/>
-        <Grid container xs={12} className={classes.form}>
+        <Grid container  className={classes.form}>
            <Grid item xs={'auto'} >
               <Typography component='h1'className={classes.typo} > Información sobre el covid-19 </Typography> 
             </Grid>
           <Grid item xs={'auto'}>   
-              <Button className={classes.button} variant='outlined' onClick={()=>handleOpen()} >
+              <Button className={classes.button} variant='outlined' onClick={()=>( !getSession() ? handleOpen() : history.push('/panel') )} >
                 INGRESAR
               </Button>     
           </Grid>
@@ -46,7 +52,7 @@ const handleClose = () => {
                     >
                   <Fade in={open}>
                     <Grid item >
-                      <LogIn/>
+                      <LogIn setUser={setUser} user={user}/>
                     </Grid>
                   </Fade>
                   </Modal>

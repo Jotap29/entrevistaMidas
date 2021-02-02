@@ -4,15 +4,13 @@ import { Link } from 'react-router-dom';
 import { Button, Grid, Typography } from '@material-ui/core';
 //==============Components=================
 import { CssTextField, useStyles } from '../assets';
+import { setSession } from './sessionStorage'
 
-const LogIn=()=>{
+const LogIn=({setUser, user})=>{
   const classes = useStyles();
   //=============React Hooks==============
   const [invalid, setInvalid] = useState(true)
-  const [user, setUser] = useState({
-    name: '',
-    password: ''
-  })
+  
 
 //============Validator function=============
   function validateInfo({name, password}) {
@@ -24,9 +22,8 @@ const LogIn=()=>{
     setUser({name, password})
   }
 
-
     return(
-      <Grid className={classes.modalCont} container xs={12} >
+      <Grid className={classes.modalCont} container  >
         <Typography> Inicia sesión </Typography>
         <CssTextField 
         id='name'
@@ -43,7 +40,7 @@ const LogIn=()=>{
         autoComplete='off'
         onChange={e => validateInfo({...user, password: e.target.value})}
         />
-        <Button className={classes.button} disabled={invalid}>
+        <Button className={classes.button} disabled={invalid} onClick={setSession(user)}>
           <Link to='/panel' style={{textDecoration:'none' }} className={invalid ? classes.disabled : classes.enabled}>
               ACEPTAR
           </Link>
